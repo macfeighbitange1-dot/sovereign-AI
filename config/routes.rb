@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
-  # This makes http://localhost:5000/ load your dashboard
-  root "home#index"
+  # The Sovereign Ledger Dashboard and API
+  resources :wallets, only: [:show] do # <--- Added :show here
+    member do
+      # Query Endpoints
+      get :balance
+      get :history
+      
+      # Command Endpoints
+      post :deposit
+      post :withdraw
+    end
+  end
 
-  # This tells the "RUN" button to send data to the 'create' action in your controller
-  post "messages", to: "home#create"
-
-  # Standard Rails health check
+  # Node Health Check
   get "up" => "rails/health#show", as: :rails_health_check
 end

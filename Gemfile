@@ -69,3 +69,5 @@ gem "foreman", "~> 0.90.0"
 gem "mistral-ai", "~> 1.2"
 
 gem "redcarpet", "~> 3.6"
+
+gem "rails_event_store", "~> 2.18"

@@ -1,28 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="luxury">
   <head>
-    <title><%= content_for(:title) || "My Sovereign Ai" %></title>
+    <title><%= content_for(:title) || "Sovereign.AI | Nairobi Node" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <%# Security Framework %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+    <%# UI Engine: Tailwind & DaisyUI %>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+    <%= yield :head %>
 
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-black min-h-screen font-sans text-slate-300 selection:bg-primary selection:text-white">
+    <%# Global Glass-morphism Navigation %>
+    <div class="navbar bg-base-100/50 backdrop-blur-xl sticky top-0 z-50 border-b border-white/5 px-8">
+      <div class="flex-1">
+        <a class="text-xl font-black tracking-tighter text-primary hover:opacity-80 transition-opacity cursor-pointer">
+          SOVEREIGN<span class="text-white opacity-30">.AI</span>
+        </a>
+      </div>
+      <div class="flex-none gap-4">
+        <div class="flex flex-col items-end">
+          <span class="text-[10px] uppercase tracking-widest opacity-40 font-bold">System Status</span>
+          <div class="badge badge-primary badge-outline font-mono text-[10px] h-5 uppercase">Nairobi_Node_01</div>
+        </div>
+      </div>
+    </div>
+
+    <%# Main Viewport %>
+    <main class="relative">
+      <%# Background Ambient Glow %>
+      <div class="fixed top-0 left-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full -z-10"></div>
+      
+      <%= yield %>
+    </main>
+
+    <%# Modern Footer %>
+    <footer class="footer items-center p-8 bg-neutral text-neutral-content border-t border-white/5 mt-20">
+      <aside class="items-center grid-flow-col">
+        <p class="font-bold tracking-widest text-[10px] uppercase">© 2026 The Marketworth Group | Secure Event Ledger</p>
+      </aside> 
+    </footer>
   </body>
 </html>
